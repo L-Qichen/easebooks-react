@@ -5,31 +5,20 @@ import {
   HashRouter as Router,
   Routes,
   Route,
-  Link,
   Navigate
 } from "react-router-dom";
+import Nav from 'components/Nav';
 
 const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-`
+`;
+
 const ContentBox = styled.div`
 flex-grow: 1;
 overflow: auto;
-`
-
-const Nav = styled.div`
-  border: 1px solid green;
-  > ul {
-    display: flex;
-    >li {
-      width: 33.3333333%;
-      text-align: center;
-      padding: 16px;
-    }
-  }
-`
+`;
 
 function App() {
   return (
@@ -45,19 +34,8 @@ function App() {
           </Routes>
         </ContentBox>
 
-        <Nav>
-          <ul>
-            <li>
-              <Link to="/records">Records</Link>
-            </li>
-            <li>
-              <Link to="/money">Money</Link>
-            </li>
-            <li>
-              <Link to="/stats">Stats</Link>
-            </li>
-          </ul>
-        </Nav>
+        <Nav />
+
       </Wrapper>
     </Router>
   );
