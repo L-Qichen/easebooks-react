@@ -1,0 +1,28 @@
+import Nav from "./Nav";
+import React from "react";
+import styled from "styled-components";
+
+
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentBox = styled.div`
+flex-grow: 1;
+overflow: auto;
+`;
+
+const Layout = (props: any) => {
+  return (
+    <Wrapper>
+      <ContentBox>
+        {props.children}
+      </ContentBox>
+      <Nav />
+    </Wrapper>
+  );
+}
+
+export default Layout;
