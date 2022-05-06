@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import React from "react";
-/**这里使用 require 代替 import 是因为
- * TreeShaking 不适用于 require 
- * 可以避免使用 console.log(x);
- **/
-require('icons/records.svg');
-require('icons/chart.svg');
-require('icons/bookkeeping.svg');
+import Icon from "./icon";
 
 const NavBox = styled.div`
 line-height: 24px;
@@ -34,21 +28,15 @@ const Nav = () => {
     <NavBox>
       <ul>
         <li>
-          <svg className="icon">
-            <use xlinkHref="#records" />
-          </svg>
+          <Icon name="records" />
           <Link to="/records">Records</Link>
         </li>
         <li>
-          <svg className="icon">
-            <use xlinkHref="#bookkeeping" />
-          </svg>
+          <Icon name="bookkeeping" />
           <Link to="/money">Money</Link>
         </li>
         <li>
-          <svg className="icon">
-            <use xlinkHref="#chart" />
-          </svg>
+          <Icon name="chart" />
           <Link to="/stats">Stats</Link>
         </li>
       </ul>

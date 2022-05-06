@@ -23,34 +23,48 @@ overflow: auto;
 function App() {
   return (
     <Router>
-      <Wrapper>
-        <ContentBox>
-          <Routes>
-            <Route path="/records" element={<Records />} />
-            <Route path="/money" element={<Money />} />
-            <Route path="/stats" element={<Stats />} />
-            <Route path="/" element={<Navigate replace to="/money" />} />
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
-        </ContentBox>
-
-        <Nav />
-
-      </Wrapper>
+      <Routes>
+        <Route path="/records" element={<Records />} />
+        <Route path="/money" element={<Money />} />
+        <Route path="/stats" element={<Stats />} />
+        <Route path="/" element={<Navigate replace to="/money" />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
     </Router>
   );
 }
 
 function Records() {
-  return <h2>Records page</h2>;
+  return (
+    <Wrapper>
+      <ContentBox>
+        <h2>Records page</h2>
+      </ContentBox>
+      <Nav />
+    </Wrapper>
+  );
 }
 
 function Money() {
-  return <h2>Money page</h2>;
+  return (
+    <Wrapper>
+      <ContentBox>
+        <h2>Money page</h2>
+      </ContentBox>
+      <Nav />
+    </Wrapper>
+  );
 }
 
 function Stats() {
-  return <h2>Stats page</h2>;
+  return (
+    <Wrapper>
+      <ContentBox>
+        <h2>Stats page</h2>
+      </ContentBox>
+      <Nav />
+    </Wrapper>
+  );
 }
 
 function NoMatch() {
