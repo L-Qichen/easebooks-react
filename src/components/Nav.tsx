@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Icon from "./icon";
 
-const NavBox = styled.div`
+const Nav = () => {
+  const NavBox = styled.div`
 line-height: 24px;
 box-shadow: 0 0 3px rgba(0,0,0,0.25);
 > ul {
@@ -23,7 +24,6 @@ box-shadow: 0 0 3px rgba(0,0,0,0.25);
 }
 `;
 
-const Nav = () => {
   return (
     <NavBox>
       <ul>
