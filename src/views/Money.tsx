@@ -127,8 +127,12 @@ function Money() {
     }
   `
 
+  const MyLayout = styled(Layout)`
+    border: 1px solid red;
+  `
+
   return (
-    <Layout>
+    <MyLayout>
       <TagsSection>
         <ol>
           <li>Food</li>
@@ -176,7 +180,7 @@ function Money() {
           <button>.</button>
         </div>
       </NumberPadSection>
-    </Layout>
+    </MyLayout>
   );
 }
 

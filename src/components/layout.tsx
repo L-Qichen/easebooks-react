@@ -15,7 +15,7 @@ const Layout = (props: any) => {
   `;
   return (
     <Wrapper>
-      <ContentBox>
+      <ContentBox className={props.className}>
         {props.children}
       </ContentBox>
       <Nav />
