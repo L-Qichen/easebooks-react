@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 function NotesSection() {
@@ -18,6 +19,13 @@ function NotesSection() {
       }
     }
   `
+  const [note, setNote] = useState('');
+  const refInput = useRef<HTMLInputElement>(null);
+  const onBlur = () => {
+    if (refInput.current !== null) {
+      setNote(refInput.current.value);
+    };
+  };
 
   return (
     <NotesSec>
@@ -25,7 +33,11 @@ function NotesSection() {
         <span>
           Comment:
         </span>
-        <input type="text" placeholder="Add comments here" />
+        <input type="text" placeholder="Add comments here"
+          ref={refInput}
+          defaultValue={note}
+          onBlur={onBlur}
+        />
       </label>
     </NotesSec>
   );
