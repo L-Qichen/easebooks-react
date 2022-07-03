@@ -1,7 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-function CategorySection() {
+type Props = {
+  value: '-' | '+';
+  onChange: (value: '-' | '+') => void;
+};
+const CategorySection: React.FC<Props> = (props) => {
   const CategorySec = styled.section`
     font-size: 24px;
     > ul {
@@ -29,14 +33,14 @@ function CategorySection() {
   const categoryMap = { '-': 'Expenses', '+': 'Incomes' };
   type catKeys = keyof typeof categoryMap;
   const [categoryList] = useState<catKeys[]>(['-', '+']);
-  const [category, setCategory] = useState('+');
+  const category = props.value;
 
   return (
     <CategorySec>
       <ul>
         {categoryList.map(c =>
           <li key={c} className={category === c ? 'selected' : ''}
-            onClick={() => { setCategory(c) }}>
+            onClick={() => { props.onChange(c) }}>
             {categoryMap[c]}
           </li>
         )}

@@ -1,7 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
-function NotesSection() {
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+};
+const NotesSection: React.FC<Props> = (props) => {
   const NotesSec = styled.section`
     padding: 0px 16px;
     > label {
@@ -19,11 +23,11 @@ function NotesSection() {
       }
     }
   `
-  const [note, setNote] = useState('');
+  const note = props.value;
   const refInput = useRef<HTMLInputElement>(null);
   const onBlur = () => {
     if (refInput.current !== null) {
-      setNote(refInput.current.value);
+      props.onChange(refInput.current.value);
     };
   };
 
@@ -43,4 +47,4 @@ function NotesSection() {
   );
 }
 
-export { NotesSection }
+export { NotesSection };

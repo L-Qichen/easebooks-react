@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import { calculateOutput } from "./NumberPadSection/calculateOutput";
 import styled from "styled-components";
 
-function NumberPadSection() {
+type Props = {
+  value: number,
+  onChange: (value: number) => void;
+  onOk?: () => void;
+};
+const NumberPadSection: React.FC<Props> = (props) => {
   const NumberPadSec = styled.section`
     display: flex;
     flex-direction: column;
@@ -55,46 +61,34 @@ function NumberPadSection() {
         }
         &:nth-child(14) {
           background: #A9A9A9;
-        }
-      }
-    }
-  `
-  const [output, setOutput] = useState('0');
+        };
+      };
+    };
+  `;
+  const output = props.value.toString();
+  const setOutput = (output: string) => {
+    let value;
+    if (output.length > 16) {
+      value = parseFloat(output.slice(0, 16));
+    } else if (output.length === 0) {
+      value = 0;
+    } else {
+      value = parseFloat(output);
+    };
+    props.onChange(value);
+  };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) { return; };
-    switch (text) {
-      case '0':
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-      case '.':
-        if (output === '0') {
-          setOutput(text);
-        } else {
-          setOutput(output + text);
-        }
-        break;
-      case 'Del.':
-        console.log('Delete');
-        break;
-      case 'C':
-        console.log('Clear');
-        break;
-      case 'OK':
-        console.log('Done');
-        break;
-    }
+    if (text === 'OK') {
+      if (props.onOk) { props.onOk(); };
+    };
+    if ('0123456789.'.split('').concat(['Del.', 'C']).indexOf(text) >= 0) {
+      setOutput(calculateOutput(text, output));
+    };
   };
 
   return (
-
     <NumberPadSec>
       <div className="output">
         {output}
@@ -117,6 +111,6 @@ function NumberPadSection() {
       </div>
     </NumberPadSec>
   );
-}
+};
 
-export { NumberPadSection }
+export { NumberPadSection };

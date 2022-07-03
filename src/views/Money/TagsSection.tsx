@@ -1,7 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const TagsSection: React.FC = () => {
+type Props = {
+  value: string[]
+  onChange: (selected: string[]) => void;
+};
+const TagsSection: React.FC<Props> = (props) => {
   const TagsSec = styled.section`
     flex-grow: 1;
     background: #FFFFFF;
@@ -30,7 +34,7 @@ const TagsSection: React.FC = () => {
   `
 
   const [tags, setTags] = useState<string[]>(['Food', 'Clothing', 'Housing', 'transportation']);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.value;
   const onAddTag = () => {
     const tagName = window.prompt('New tag name: ');
     if (tagName !== null) {
@@ -40,9 +44,9 @@ const TagsSection: React.FC = () => {
   const onToggleTag = (tag: string) => {
     const index = selectedTags.indexOf(tag);
     if (index >= 0) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
+      props.onChange(selectedTags.filter(t => t !== tag));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
 
