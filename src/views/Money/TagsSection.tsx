@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useTags } from "hooks/useTags";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type Props = {
@@ -23,17 +24,19 @@ const TagsSection: React.FC<Props> = (props) => {
         }
       }
     }
-    > button {
+    > button, span {
       background: none;
       border: none;
       padding: 2px 4px;
       border-bottom: 1px solid #333;
       color: #666;
       margin-top: 8px;
+      margin-right: 24px;
+      font-size: 16px;
     }
   `
 
-  const [tags, setTags] = useState<string[]>(['Food', 'Clothing', 'Housing', 'transportation']);
+  const { tags, setTags } = useTags();
   const selectedTags = props.value;
   const onAddTag = () => {
     const tagName = window.prompt('New tag name: ');
@@ -60,6 +63,9 @@ const TagsSection: React.FC<Props> = (props) => {
         )}
       </ol>
       <button onClick={onAddTag}>add new tag</button>
+      <Link to={'/edit'}>
+        <span>edit tags</span>
+      </Link>
     </TagsSec>
   );
 }
