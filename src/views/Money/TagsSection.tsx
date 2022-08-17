@@ -63,7 +63,7 @@ const TagsSection: React.FC<Props> = (props) => {
         )}
       </ol>
       <button onClick={onAddTag}>add new tag</button>
-      <Link to={'/edit'}>
+      <Link to={'/tags'}>
         <span>edit tags</span>
       </Link>
     </TagsSec>

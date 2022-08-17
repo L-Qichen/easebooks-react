@@ -10,7 +10,7 @@ import Money from 'views/Money';
 import Stats from 'views/Stats';
 import NoMatch from 'views/NoMatch';
 import styled from 'styled-components';
-import { Tags } from 'views/Tags';
+import Tags from 'views/Tags';
 
 function App() {
   const AppWrapper = styled.div`
