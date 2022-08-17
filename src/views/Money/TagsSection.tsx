@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type Props = {
-  value: string[]
-  onChange: (selected: string[]) => void;
+  value: number[]
+  onChange: (selected: number[]) => void;
 };
 const TagsSection: React.FC<Props> = (props) => {
   const TagsSec = styled.section`
@@ -37,19 +37,19 @@ const TagsSection: React.FC<Props> = (props) => {
   `
 
   const { tags, setTags } = useTags();
-  const selectedTags = props.value;
+  const selectedTagIds = props.value;
   const onAddTag = () => {
     const tagName = window.prompt('New tag name: ');
     if (tagName !== null) {
-      setTags([...tags, tagName]);
+      setTags([...tags, { id: Math.random(), name: tagName }]);
     };
   };
-  const onToggleTag = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const onToggleTag = (tagId: number) => {
+    const index = selectedTagIds.indexOf(tagId);
     if (index >= 0) {
-      props.onChange(selectedTags.filter(t => t !== tag));
+      props.onChange(selectedTagIds.filter(t => t !== tagId));
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
 
@@ -57,9 +57,9 @@ const TagsSection: React.FC<Props> = (props) => {
     <TagsSec>
       <ol>
         {tags.map(tag =>
-          <li key={tag} onClick={() => { onToggleTag(tag) }}
-            className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}
-          >{tag}</li>
+          <li key={tag.id} onClick={() => { onToggleTag(tag.id) }}
+            className={selectedTagIds.indexOf(tag.id) >= 0 ? 'selected' : ''}
+          >{tag.name}</li>
         )}
       </ol>
       <button onClick={onAddTag}>add new tag</button>
