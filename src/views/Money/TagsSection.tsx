@@ -1,4 +1,5 @@
 import { useTags } from "hooks/useTags";
+import { createId } from "lib/createId";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -41,7 +42,7 @@ const TagsSection: React.FC<Props> = (props) => {
   const onAddTag = () => {
     const tagName = window.prompt('New tag name: ');
     if (tagName !== null) {
-      setTags([...tags, { id: Math.random(), name: tagName }]);
+      setTags([...tags, { id: createId(), name: tagName }]);
     };
   };
   const onToggleTag = (tagId: number) => {
