@@ -2,6 +2,7 @@ import Icon from "components/icon";
 import Layout from "components/layout";
 import { useTags } from "hooks/useTags";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Tags() {
@@ -11,12 +12,14 @@ function Tags() {
     > li{
       border-bottom: 1px solid #d5d5d9;
       line-height: 20px;
-      padding: 12px 0px;
       margin-left: 16px;
       margin-right: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      > a{
+        padding: 12px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   `
 
@@ -40,14 +43,16 @@ function Tags() {
     flex-direction: column;
   `
 
-  const { tags, setTags } = useTags();
+  const { tags } = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
           <li key={tag}>
-            <span className="oneLine">{tag}</span>
-            <Icon name="right" />
+            <Link to={'/tags/' + tag}>
+              <span className="oneLine">{tag}</span>
+              <Icon name="right" />
+            </Link>
           </li>
         )}
       </TagList>
