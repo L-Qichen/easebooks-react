@@ -22,6 +22,7 @@ function Tags() {
     line-height: 20px;
     padding: 14px;
     background: white;
+    margin-bottom: 8px;
   `;
 
   const TagList = styled.ol`

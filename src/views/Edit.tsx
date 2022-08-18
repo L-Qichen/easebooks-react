@@ -69,15 +69,17 @@ function Edit(props: Props) {
   `;
 
   // const note = props.value;
+  const { findTag, updateTag, deleteTag } = useTags();
+  let { id: idString } = useParams<Params>();
+  let tag = findTag(parseInt(idString || ''));
   const refInput = useRef<HTMLInputElement>(null);
   const onBlur = () => {
     if (refInput.current !== null) {
-      props.onChange(refInput.current.value);
+      // props.onChange(refInput.current.value);
+      //tag.name = refInput.current.value;
+      updateTag(tag.id, { name: refInput.current.value });
     };
   };
-  const { findTag } = useTags();
-  let { id } = useParams<Params>();
-  const tag = findTag(parseInt(id || ''));
   return (
     <Layout>
       <Topbar>
@@ -85,23 +87,27 @@ function Edit(props: Props) {
         <span>Edit</span>
         <Icon name="" />
       </Topbar>
-      <InputWrapper>
-        <Label>
-          <span>Tag name: </span>
-          <input type="text"
-            placeholder="Tag name"
-            ref={refInput}
-            defaultValue={tag.name}
-            onBlur={onBlur}
-          />
-        </Label>
-      </InputWrapper>
-      <Center>
-        <Space />
-        <Space />
-        <Space />
-        <Button>Delete</Button>
-      </Center>
+      {tag ?
+        <div>
+          <InputWrapper>
+            <Label>
+              <span>Tag name: </span>
+              <input type="text"
+                placeholder="Tag name"
+                ref={refInput}
+                defaultValue={tag.name}
+                onBlur={onBlur}
+              />
+            </Label>
+          </InputWrapper>
+          <Center>
+            <Space />
+            <Space />
+            <Space />
+            <Button onClick={() => deleteTag(tag.id)}>Delete</Button>
+          </Center>
+        </div> : <Center><Space /><Space /><Space />No Data</Center>
+      }
     </Layout>
   )
 };
