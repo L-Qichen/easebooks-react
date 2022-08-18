@@ -1,19 +1,108 @@
+import Icon from "components/icon";
+import Layout from "components/layout";
 import { useTags } from "hooks/useTags";
-import React from "react";
+import React, { useRef } from "react";
 import { useParams } from 'react-router-dom';
+import styled from "styled-components";
 
 type Params = {
   id: string;
 }
 
-function Edit() {
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+function Edit(props: Props) {
+  const Button = styled.button`
+    font-size: 18px;
+    border: none;
+    padding: 8px 12px;
+    background: #f60;
+    border-radius: 4px;
+    color: white;
+`;
+
+  const Topbar = styled.header`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 20px;
+    padding: 14px;
+    background: white;
+  `;
+
+  const InputWrapper = styled.div`
+    background: white;
+    padding: 0px 16px;
+    margin-top: 8px;
+  `;
+
+  const Label = styled.label`
+    display: flex;
+    align-items: center;
+    > span {
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+    > input {
+      width: 100%;
+      height: 44px;
+      border: none;
+      background: none;
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      color: #333;
+    }
+  `;
+
+  const Center = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  `;
+
+  const Space = styled.div`
+    height: 16px;
+  `;
+
+  // const note = props.value;
+  const refInput = useRef<HTMLInputElement>(null);
+  const onBlur = () => {
+    if (refInput.current !== null) {
+      props.onChange(refInput.current.value);
+    };
+  };
   const { findTag } = useTags();
   let { id } = useParams<Params>();
   const tag = findTag(parseInt(id || ''));
   return (
-    <div>
-      {tag.name}
-    </div>
+    <Layout>
+      <Topbar>
+        <Icon name="left" />
+        <span>Edit</span>
+        <Icon name="" />
+      </Topbar>
+      <InputWrapper>
+        <Label>
+          <span>Tag name: </span>
+          <input type="text"
+            placeholder="Tag name"
+            ref={refInput}
+            defaultValue={tag.name}
+            onBlur={onBlur}
+          />
+        </Label>
+      </InputWrapper>
+      <Center>
+        <Space />
+        <Space />
+        <Space />
+        <Button>Delete</Button>
+      </Center>
+    </Layout>
   )
 };
 

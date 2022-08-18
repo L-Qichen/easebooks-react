@@ -25,7 +25,9 @@ function App() {
           <Route path="/records" element={<Records />} />
           <Route path="/money" element={<Money />} />
           <Route path="/tags" element={<Tags />} />
-          <Route path="/tags/:id" element={<Edit />} />
+          <Route path="/tags/:id" element={<Edit value={''} onChange={function (value: string): void {
+            throw new Error('Function not implemented.');
+          }} />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/" element={<Navigate replace to="/money" />} />
           <Route path="*" element={<NoMatch />} />
