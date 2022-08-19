@@ -68,22 +68,24 @@ function Edit(props: Props) {
     height: 16px;
   `;
 
-  // const note = props.value;
   const { findTag, updateTag, deleteTag } = useTags();
   let { id: idString } = useParams<Params>();
   let tag = findTag(parseInt(idString || ''));
   const refInput = useRef<HTMLInputElement>(null);
   const onBlur = () => {
     if (refInput.current !== null) {
-      // props.onChange(refInput.current.value);
-      //tag.name = refInput.current.value;
       updateTag(tag.id, { name: refInput.current.value });
     };
   };
+
+  const onClickBack = () => {
+    window.history.back();
+  };
+
   return (
     <Layout>
       <Topbar>
-        <Icon name="left" />
+        <Icon name="left" onClick={onClickBack} />
         <span>Edit</span>
         <Icon name="" />
       </Topbar>

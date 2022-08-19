@@ -15,9 +15,18 @@ import React from "react";
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try { importAll(require.context('icons', true, /\.svg$/)); } catch (error) { console.log(error); }
 
-const Icon = (props: { name: string; }) => {
+/**
+ *  这里暂用 props: any 的原因是不知道如何接收外部的 svg 传入的onClick方法
+ *  虽然 any 很方便，但是不建议使用
+ *  项目 version1.0 完成后再回来研究
+ **/
+// type Props = {
+//   name?: string;
+// } & React.SVGAttributes<SVGAElement>;
+
+const Icon = (props: any) => {
   return (
-    <svg className="icon">
+    <svg className="icon" onClick={props.onClick}>
       {props.name && <use xlinkHref={'#' + props.name} />}
     </svg>
   )

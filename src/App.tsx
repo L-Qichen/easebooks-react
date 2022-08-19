@@ -30,8 +30,6 @@ function App() {
   const refInput = useRef<HTMLInputElement>(null);
   const onChange = () => {
     if (refInput.current !== null) {
-      // props.onChange(refInput.current.value);
-      //tag.name = refInput.current.value;
       updateTag(tag.id, { name: refInput.current.value });
       console.log(tag);
     };
