@@ -1,5 +1,4 @@
 import { useTags } from "hooks/useTags";
-import { createId } from "lib/createId";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -37,14 +36,9 @@ const TagsSection: React.FC<Props> = (props) => {
     }
   `
 
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
   const selectedTagIds = props.value;
-  const onAddTag = () => {
-    const tagName = window.prompt('New tag name: ');
-    if (tagName !== null) {
-      setTags([...tags, { id: createId(), name: tagName }]);
-    };
-  };
+
   const onToggleTag = (tagId: number) => {
     const index = selectedTagIds.indexOf(tagId);
     if (index >= 0) {
@@ -63,7 +57,7 @@ const TagsSection: React.FC<Props> = (props) => {
           >{tag.name}</li>
         )}
       </ol>
-      <button onClick={onAddTag}>add new tag</button>
+      <button onClick={addTag}>add new tag</button>
       <Link to={'/tags'}>
         <span>edit tags</span>
       </Link>

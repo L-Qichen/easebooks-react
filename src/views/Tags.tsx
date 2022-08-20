@@ -53,7 +53,7 @@ function Tags() {
     flex-direction: column;
   `;
 
-  const { tags } = useTags();
+  const { tags, addTag } = useTags();
   return (
     <Layout>
       <Topbar>
@@ -75,7 +75,7 @@ function Tags() {
         <Space />
         <Space />
         <Space />
-        <Button>add new tag</Button>
+        <Button onClick={addTag}>add new tag</Button>
       </Center>
     </Layout>
   )
