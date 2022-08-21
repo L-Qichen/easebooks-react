@@ -53,7 +53,7 @@ const useTags = () => {
     };
   };
 
-  return { tags, setTags, findTag, updateTag, findTagIndex, deleteTag, addTag }
+  return { tags, setTags, findTag, updateTag, findTagIndex, deleteTag, addTag };
 };
 
 export { useTags };
