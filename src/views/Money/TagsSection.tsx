@@ -20,7 +20,7 @@ const TagsSection: React.FC<Props> = (props) => {
         padding: 3px 18px;
         margin: 8px 12px;
         &.selected {
-          background:orange;
+          background:#f60;
         }
       }
     }
