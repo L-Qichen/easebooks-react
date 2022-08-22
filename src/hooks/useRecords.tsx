@@ -5,7 +5,7 @@ type RecordInfo = {
   tagIds: number[];
   note: string;
   category: '+' | '-';
-  amount: number;
+  amount: string;
   createdAt: string; // ISO 8601
 }
 
@@ -23,7 +23,7 @@ const useRecords = () => {
   }, [records]);
 
   const addRecord = (newRecord: newRecordInfo) => {
-    if (newRecord.amount <= 0) {
+    if (parseFloat(newRecord.amount) <= 0) {
       alert("Please input the amount.");
       return false;
     };

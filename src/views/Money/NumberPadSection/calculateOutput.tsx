@@ -10,12 +10,17 @@ const calculateOutput = (text: string, output = '0') => {
     case '7':
     case '8':
     case '9':
-    case '.':
       if (output === '0') {
         return text;
       } else {
         return output + text;
       };
+    case '.':
+      if (output.indexOf('.') >= 0) {
+        return output;
+      } else {
+        return output + text;
+      }
     case 'Del.':
       if (output.length === 1) {
         return '';

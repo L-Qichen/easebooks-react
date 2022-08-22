@@ -18,7 +18,7 @@ function Money() {
     tagIds: [] as number[],
     note: '',
     category: '-' as Category,
-    amount: 0
+    amount: '0'
   };
 
   const [selected, setSelected] = useState(defaultData);
