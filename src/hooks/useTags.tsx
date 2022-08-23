@@ -21,7 +21,7 @@ const useTags = () => {
 
   useUpdate(() => {
     window.localStorage.setItem('tags', JSON.stringify(tags));
-  }, [tags]); // useEffect 钩子必须要不可变数据才能触发，所以每次setTags必须是一个新的
+  }, tags); // useEffect 钩子必须要不可变数据才能触发，所以每次setTags必须是一个新的
 
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
   const findTagIndex = (id: number) => {

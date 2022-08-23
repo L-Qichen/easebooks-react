@@ -20,7 +20,7 @@ const useRecords = () => {
 
   useUpdate(() => {
     window.localStorage.setItem('records', JSON.stringify(records));
-  }, [records]);
+  }, records);
 
   const addRecord = (newRecord: newRecordInfo) => {
     if (parseFloat(newRecord.amount) <= 0) {
