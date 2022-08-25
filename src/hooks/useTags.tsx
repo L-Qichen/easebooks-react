@@ -10,9 +10,9 @@ const useTags = () => {
     if (initialTags.length === 0) {
       initialTags = [
         { id: createId(), name: 'Food' },
-        { id: createId(), name: 'Clothing' },
+        { id: createId(), name: 'Shopping' },
         { id: createId(), name: 'Housing' },
-        { id: createId(), name: 'transportation' }
+        { id: createId(), name: 'Salary' }
 
       ];
     };

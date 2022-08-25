@@ -4,8 +4,26 @@ import { MyChart } from "views/MyChart";
 import { RecordInfo, useRecords } from "hooks/useRecords";
 import day from "dayjs";
 import { CategorySection } from "./Money/CategorySection";
+import styled from "styled-components";
 
 function Stats() {
+  const StatsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+    .chartwrapper{
+      flex-grow:1;
+      overflow-x: auto;
+      padding: 0px 16px;
+    }
+    .title{
+      text-align: center;
+      font-size: 24px;
+      padding: 16px 0px;
+      color: #666;
+    }
+  `
+
   const [category, setCategory] = useState<'-' | '+'>('-');
   const { records } = useRecords();
   const selectedRecords = records.filter(record => record.category === category);
@@ -31,12 +49,16 @@ function Stats() {
 
   return (
     <Layout>
-      <CategorySection value={category}
-        onChange={value => { setCategory(value) }}
-      />
-      <h2>Stats page</h2>
-      <div id='myChart'></div>
-      <MyChart selectedCategory={category} value={array} />
+      <StatsContainer>
+        <CategorySection value={category}
+          onChange={value => { setCategory(value) }}
+        />
+        <div className="title">{category === "-" ? "Expenses " : "Income "}
+          of Past 30 Days</div>
+        <div className='chartwrapper'>
+          <MyChart selectedCategory={category} value={array} />
+        </div>
+      </StatsContainer>
     </Layout>
   );
 }

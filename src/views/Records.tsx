@@ -22,6 +22,17 @@ function Records() {
     }
   `;
 
+  const NoData = styled.div`
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: #666;
+    opacity: 0.5;
+  `;
+
   const Header = styled.h3`
     font-size: 18px;
     line-height: 20px;
@@ -54,35 +65,39 @@ function Records() {
       <CategorySection value={category}
         onChange={value => { setCategory(value) }}
       />
-      {array.map(([date, records]) => {
-        return (
-          <div key={date}>
-            <Header>
-              {date}
-            </Header>
-            <div>
-              {records.map(record => {
-                return (
-                  <Item key={record.createdAt}>
-                    <div className="tags">
-                      {record.tagIds.map(tagId => {
-                        return <span key={tagId}>{getName(tagId)}</span>
-                      })
-                        .reduce((result, span, index, array) =>
-                          result.concat(index < array.length - 1 ? [span, ', '] : [span]), [] as ReactNode[])}
-                    </div>
-                    {record.note && <div className="note">
-                      {record.note}
-                    </div>}
-                    <div className="amount">
-                      ${record.amount}
-                    </div>
-                  </Item>);
-              })}
-            </div>
-          </div>
-        )
-      })}
+      {array.length === 0 ? <NoData>No Data</NoData> :
+        <div>
+          {array.map(([date, records]) => {
+            return (
+              <div key={date}>
+                <Header>
+                  {date}
+                </Header>
+                <div>
+                  {records.map(record => {
+                    return (
+                      <Item key={record.createdAt}>
+                        <div className="tags">
+                          {record.tagIds.map(tagId => {
+                            return <span key={tagId}>{getName(tagId)}</span>
+                          })
+                            .reduce((result, span, index, array) =>
+                              result.concat(index < array.length - 1 ? [span, ', '] : [span]), [] as ReactNode[])}
+                        </div>
+                        {record.note && <div className="note">
+                          {record.note}
+                        </div>}
+                        <div className="amount">
+                          ${record.amount}
+                        </div>
+                      </Item>);
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>}
+
     </Layout >
   );
 }

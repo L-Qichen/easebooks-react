@@ -10,7 +10,7 @@ const TagsSection: React.FC<Props> = (props) => {
   const TagsSec = styled.section`
     flex-grow: 1;
     background: #FFFFFF;
-    padding: 12px 16px;
+    padding: 16px;
     > ol {
       margin: 0px -12px;
       > li {
