@@ -6,7 +6,12 @@ import day from 'dayjs'
 import styled from "styled-components";
 import { useTags } from "hooks/useTags";
 import "core-js";
-
+/*
+ * records 页面在 v2.0 时可以添加的features：
+ * 删除和修改已有的条目
+ * 现在所有页面都有多次 render 的问题
+ * 需要在第二版时修复
+*/
 function Records() {
   const Item = styled.div`
     display: flex;
