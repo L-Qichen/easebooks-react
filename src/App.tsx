@@ -15,11 +15,11 @@ import Tags from 'views/Tags';
 import Edit from 'views/Edit';
 import { useTags } from 'hooks/useTags';
 
-function App() {
-  const AppWrapper = styled.div`
-    color: #333;
-  `
+const AppWrapper = styled.div`
+color: #333;
+`
 
+function App() {
   type Params = {
     id: string;
   }

@@ -7,19 +7,20 @@ import { NumberPadSection } from "./Money/NumberPadSection";
 import { TagsSection } from "./Money/TagsSection";
 import { useRecords } from "hooks/useRecords";
 
-function Money() {
-  const MyLayout = styled(Layout)`
+const MyLayout = styled(Layout)`
     display: flex;
     flex-direction: column;
   `
-  type Category = '-' | '+';
+type Category = '-' | '+';
 
-  const defaultData = {
-    tagIds: [] as number[],
-    note: '',
-    category: '-' as Category,
-    amount: '0'
-  };
+const defaultData = {
+  tagIds: [] as number[],
+  note: '',
+  category: '-' as Category,
+  amount: '0'
+};
+
+function Money() {
 
   const [selected, setSelected] = useState(defaultData);
 

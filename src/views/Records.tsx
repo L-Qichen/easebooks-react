@@ -11,9 +11,13 @@ import "core-js";
  * 删除和修改已有的条目
  * 现在所有页面都有多次 render 的问题
  * 需要在第二版时修复
+ * 一个重要的事情：styled component 申明标签变量必须在 react function 组件的外部
+ * 否则 即使项目开发的时候没问题， build 项目之后也会报错
+ * 该项目一开始使用 styled-component 的版本为 5.0.1，这个版本会在浏览器报错：invalid hook call
+ * 最后不得不删掉 node—modules 并把版本改为 4.4.1 重新 yarn install 来解决该问题
 */
-function Records() {
-  const Item = styled.div`
+
+const Item = styled.div`
     display: flex;
     justify-content: space-between;
     background: white;
@@ -27,7 +31,7 @@ function Records() {
     }
   `;
 
-  const NoData = styled.div`
+const NoData = styled.div`
     height: 70vh;
     width: 100vw;
     display: flex;
@@ -38,12 +42,13 @@ function Records() {
     opacity: 0.5;
   `;
 
-  const Header = styled.h3`
+const Header = styled.h3`
     font-size: 18px;
     line-height: 20px;
     padding: 10px 16px;
   `;
 
+function Records() {
   const [category, setCategory] = useState<'-' | '+'>('-');
   const { records } = useRecords();
   const { getName } = useTags();

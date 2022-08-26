@@ -2,12 +2,7 @@ import { useTags } from "hooks/useTags";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-type Props = {
-  value: number[]
-  onChange: (selected: number[]) => void;
-};
-const TagsSection: React.FC<Props> = (props) => {
-  const TagsSec = styled.section`
+const TagsSec = styled.section`
     flex-grow: 1;
     background: #FFFFFF;
     padding: 16px;
@@ -34,8 +29,14 @@ const TagsSection: React.FC<Props> = (props) => {
       margin-right: 24px;
       font-size: 16px;
     }
-  `
+  `;
 
+type Props = {
+  value: number[]
+  onChange: (selected: number[]) => void;
+};
+
+const TagsSection: React.FC<Props> = (props) => {
   const { tags, addTag } = useTags();
   const selectedTagIds = props.value;
 

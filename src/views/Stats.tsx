@@ -6,8 +6,7 @@ import day from "dayjs";
 import { CategorySection } from "./Money/CategorySection";
 import styled from "styled-components";
 
-function Stats() {
-  const StatsContainer = styled.div`
+const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -24,6 +23,7 @@ function Stats() {
     }
   `
 
+function Stats() {
   const [category, setCategory] = useState<'-' | '+'>('-');
   const { records } = useRecords();
   const selectedRecords = records.filter(record => record.category === category);

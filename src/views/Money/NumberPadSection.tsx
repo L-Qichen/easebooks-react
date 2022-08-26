@@ -7,8 +7,7 @@ type Props = {
   onChange: (value: string) => void;
   onOk?: () => void;
 };
-const NumberPadSection: React.FC<Props> = (props) => {
-  const NumberPadSec = styled.section`
+const NumberPadSec = styled.section`
     display: flex;
     flex-direction: column;
     > .output {
@@ -65,6 +64,8 @@ const NumberPadSection: React.FC<Props> = (props) => {
       };
     };
   `;
+
+const NumberPadSection: React.FC<Props> = (props) => {
   const output = props.value.toString();
   const setOutput = (output: string) => {
     let value: string;
