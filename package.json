@@ -1,6 +1,7 @@
 {
   "name": "easebooks",
   "version": "0.1.0",
+  "homepage": "https://l-qichen.github.io/easebooks-react-website-preview/",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
